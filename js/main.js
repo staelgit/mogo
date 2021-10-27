@@ -2,7 +2,6 @@
 
 
 // слайдер
-
 $(document).ready(function(){
 	$('.slider').slick({
 		infinite: true,
@@ -14,30 +13,23 @@ $(document).ready(function(){
 	});
 });
 
+
 // найсскролл
 $(".accordion-wedo__text").niceScroll({
-    
-}); 
+});
+
 
 // переход по клику кнопки до его блока
 goToElementByButtonClick();
-function goToElementByButtonClick(){
-	const aboutButton = document.querySelectorAll('.header-menu__link')[0];
-	const serviceButton = document.querySelectorAll('.header-menu__link')[1];
-	const workButton = document.querySelectorAll('.header-menu__link')[2];
-	const blogButton = document.querySelectorAll('.header-menu__link')[3];
-	const contactButton = document.querySelectorAll('.header-menu__link')[4];
-	const aboutElement = document.querySelector(`.intro`);
-	const serviceElement = document.querySelector(`.services`);
-	const workElement = document.querySelector(`.works`);
-	const blogElement = document.querySelector(`.blog`);
-	const contactElement = document.querySelector(`.footer`);
 
-	addListenerToButton(aboutButton, aboutElement);
-	addListenerToButton(serviceButton, serviceElement);
-	addListenerToButton(workButton, workElement);
-	addListenerToButton(blogButton, blogElement);
-	addListenerToButton(contactButton, contactElement);
+function goToElementByButtonClick(){
+	const buttonList = document.querySelectorAll('a[data-item]');
+	for (let button of buttonList) {
+		if (button.dataset.item) {
+			const element = document.querySelector(`.${button.dataset.item}`);
+			addListenerToButton(button, element)
+		}
+	}
 
 	function addListenerToButton(button, element) {
 		button.addEventListener('click', function (event) {
@@ -49,10 +41,8 @@ function goToElementByButtonClick(){
 				behavior:'smooth',
 			});
 		});
-	};
-};
-
-
+	}
+}
 
 
 // плавающее меню
@@ -76,11 +66,12 @@ if (currentScroll !== lastScroll) {
 }
 };
 
-//кнопки активные в зависимости от раздела
 
+//кнопки активные в зависимости от раздела
 let lastClientHeight = 0;
 let lastScroll2 = 0; 
 let timeout = 100;
+
 checkChangeScrollOrClientHeight ();
 
 function checkChangeScrollOrClientHeight () {
@@ -97,6 +88,7 @@ function checkChangeScrollOrClientHeight () {
 function setActiveButton () {
 	const allElements = document.querySelector('.wrapper').children;
 	let currentClientHeight = document.documentElement.clientHeight;
+
 	for (let elem of allElements) {
 		let elemTop = elem.getBoundingClientRect().top;
 		let elemHeight = elem.getBoundingClientRect().height;
@@ -113,7 +105,9 @@ function setActiveButton () {
 			}
 		}
 	}
+
 	const allNavElements = document.querySelectorAll('.header-menu__link');
+
 	for (let navElement of allNavElements) {
 		if (activeElementId === '' || activeElementId === undefined) {
 			if (navElement.classList.contains('active')) {
@@ -134,7 +128,6 @@ function setActiveButton () {
 
 
 //сворачивание меню на мобилках при клике
-
 let lastStatusMenu = document.querySelector('.header__menu').classList.contains('active');
 
 setInterval(checkActiveHeaderMenu, 100);
@@ -143,12 +136,12 @@ function checkActiveHeaderMenu() {
 	const headerMenu = document.querySelector('.header__menu');
 	const headerMenuBody = document.querySelector('.header-menu__body');
 	let currentStatusMenu = headerMenu.classList.contains('active');
+
 	if(currentStatusMenu) {
 		if (!lastStatusMenu) {
 			headerMenuBody.addEventListener('click', handler)
 		}
 		lastStatusMenu = currentStatusMenu;
-
 	} else {
 		if (lastStatusMenu) {
 			headerMenuBody.removeEventListener('click', handler)
@@ -160,11 +153,7 @@ function checkActiveHeaderMenu() {
 		if (document.body.classList.contains('lock')) document.body.classList.remove('lock');
 		headerMenu.classList.remove('active');
 		document.querySelector('.header-menu__icon').classList.remove('active');
-
-
 	}
-
-
 }
 
 //FORMS
