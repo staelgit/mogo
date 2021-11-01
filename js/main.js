@@ -16,10 +16,8 @@ $(document).ready(function(){
 	// найсскролл
 	$(".accordion-wedo__text").niceScroll({
 	});
-/*
 	//// JQ - переход по клику кнопки до его блока
-	console.log($('a[data-item]'));
-	*/
+	//console.log($('.header-menu__list a[data-item]'));
 
 
 });
@@ -115,8 +113,7 @@ function setActiveButton () {
 		}
 	}
 
-	const allNavElements = document.querySelectorAll('.header-menu__link');
-
+	const allNavElements = document.querySelectorAll('a[data-item]');
 	for (let navElement of allNavElements) {
 		if (activeElementId === '' || activeElementId === undefined) {
 			if (navElement.classList.contains('active')) {
