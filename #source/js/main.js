@@ -28,6 +28,18 @@ $(document).ready(function(){
 		}, 1000);
 	});
 
+	// JQ - плавающее меню
+	$(window).scroll(function () {
+		console.log(window.pageYOffset);
+		let headerElement = $('.header');
+		if (window.pageYOffset > 20) {
+			if (!headerElement.hasClass('fixed')) {
+				headerElement.addClass('fixed')
+			}
+		} else if (headerElement.hasClass('fixed')) {
+			headerElement.removeClass('fixed')
+		}
+	})
 
 });
 
@@ -62,28 +74,30 @@ function goToElementByButtonClick(){
 }
 
 */
+/*
 
 // плавающее меню
 let lastScroll = window.pageYOffset;
 setInterval(controlSwimmingTopMenu, 100);
 
 function controlSwimmingTopMenu (){
-let currentScroll = window.pageYOffset;
-if (currentScroll !== lastScroll) {
-	lastScroll = currentScroll;
-	const elementHeader = document.querySelector(`.header`);
-	if (currentScroll > 20) {
-		if (elementHeader.classList.contains('fixed')) {}
-			else {elementHeader.classList.add('fixed')}
-	}
-	else {
-		if (elementHeader.classList.contains('fixed')) {
-			elementHeader.classList.remove('fixed')
+	let currentScroll = window.pageYOffset;
+	if (currentScroll !== lastScroll) {
+		lastScroll = currentScroll;
+		const elementHeader = document.querySelector(`.header`);
+		if (currentScroll > 20) {
+			if (elementHeader.classList.contains('fixed')) {}
+				else {elementHeader.classList.add('fixed')}
+		}
+		else {
+			if (elementHeader.classList.contains('fixed')) {
+				elementHeader.classList.remove('fixed')
+			}
 		}
 	}
 }
-};
 
+*/
 
 //кнопки активные в зависимости от раздела
 let lastClientHeight = 0;
