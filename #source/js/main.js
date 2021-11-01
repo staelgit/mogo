@@ -3,8 +3,9 @@
 //@prepros-append script.js
 
 
-// слайдер
+
 $(document).ready(function(){
+	// слайдер
 	$('.slider').slick({
 		infinite: true,
 		arrows:true,
@@ -13,12 +14,20 @@ $(document).ready(function(){
 		slidesToScroll: 1,
 		adaptiveHeight: true
 	});
+
+	// найсскролл
+	$(".accordion-wedo__text").niceScroll({
+	});
+/*
+	//// JQ - переход по клику кнопки до его блока
+	console.log($('a[data-item]'));
+	*/
+
+
 });
 
 
-// найсскролл
-$(".accordion-wedo__text").niceScroll({
-});
+
 
 
 // переход по клику кнопки до его блока
