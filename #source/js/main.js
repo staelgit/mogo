@@ -18,8 +18,15 @@ $(document).ready(function(){
 	// найсскролл
 	$(".accordion-wedo__text").niceScroll({
 	});
-	//// JQ - переход по клику кнопки до его блока
-	//console.log($('.header-menu__list a[data-item]'));
+
+	// JQ - переход по клику кнопки до его блока
+	$('a[data-item]').click(function (e) {
+		e.preventDefault();
+		let targetSelector = '.' + $(this).attr('data-item');
+		$('html, body').animate({
+			scrollTop: $(targetSelector).offset().top-56
+		}, 1000);
+	});
 
 
 });
@@ -27,6 +34,7 @@ $(document).ready(function(){
 
 
 
+/*
 
 // переход по клику кнопки до его блока
 goToElementByButtonClick();
@@ -53,6 +61,7 @@ function goToElementByButtonClick(){
 	}
 }
 
+*/
 
 // плавающее меню
 let lastScroll = window.pageYOffset;
