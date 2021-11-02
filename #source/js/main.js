@@ -38,7 +38,24 @@ $(document).ready(function(){
 		} else if (headerElement.hasClass('fixed')) {
 			headerElement.removeClass('fixed')
 		}
-	})
+	});
+
+	// JQ - подсветка кнопок в зависимости от того что сейчас на экране
+	$(window).on("scroll resize", (function () {
+		console.log('изменение скрола или размера экрана');
+		let win = $(this);
+		let winHeight = win.height();
+		console.log(winHeight);
+		console.log(win.scrollTop());
+
+
+
+
+
+
+	}));
+
+
 
 });
 
