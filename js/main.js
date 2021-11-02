@@ -28,9 +28,8 @@ $(document).ready(function(){
 
 	// JQ - плавающее меню
 	$(window).scroll(function () {
-		console.log(window.pageYOffset);
 		let headerElement = $('.header');
-		if (window.pageYOffset > 20) {
+		if ($(this).scrollTop() > 20) {
 			if (!headerElement.hasClass('fixed')) {
 				headerElement.addClass('fixed')
 			}
