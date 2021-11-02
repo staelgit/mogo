@@ -64,20 +64,18 @@ $(document).ready(function(){
 		});
 
 		$('a[data-item]').each(function () {
-			let navElement = $(this);
-
-			if (activeElementId === '' || activeElementId === undefined) {
-				if (navElement.hasClass('active')) {
-					navElement.removeClass('active');
+			if (!activeElementId) {
+				if ($(this).hasClass('active')) {
+					$(this).removeClass('active');
 				}
-			} else if (navElement.attr('data-item') === activeElementId) {
-				if (navElement.hasClass('active')) {
+			} else if ($(this).attr('data-item') === activeElementId) {
+				if ($(this).hasClass('active')) {
 				} else {
-					navElement.addClass('active');
+					$(this).addClass('active');
 				}
 			} else {
-				if (navElement.hasClass('active')) {
-					navElement.removeClass('active');
+				if ($(this).hasClass('active')) {
+					$(this).removeClass('active');
 				}
 			}
 		})
