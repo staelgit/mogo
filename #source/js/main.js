@@ -42,20 +42,46 @@ $(document).ready(function(){
 
 	// JQ - подсветка кнопок в зависимости от того что сейчас на экране
 	$(window).on("scroll resize", (function () {
-		console.log('изменение скрола или размера экрана');
-		let win = $(this);
-		let winHeight = win.height();
-		console.log(winHeight);
-		console.log(win.scrollTop());
+		let currentClientHeight = $(this).height();
+		let documentScroll = $(this).scrollTop();
+		var activeElementId;
 
+		$('.wrapper').children().each(function () {
+			let elemTop = $(this).offset().top - documentScroll;
+			let elemHeight = $(this).outerHeight();
+			let visibleElemPart;
 
+			if (elemTop < currentClientHeight & (elemTop + elemHeight) > 0) {
+				if (elemTop < 0) {
+					visibleElemPart = (elemTop + elemHeight) / currentClientHeight;
+				} else {
+					visibleElemPart = (currentClientHeight - elemTop) / currentClientHeight;
+				}
+				if (visibleElemPart > 0.60) {
+					activeElementId = $(this).attr('id');
+				}
+			}
+		});
 
+		$('a[data-item]').each(function () {
+			let navElement = $(this);
 
-
-
+			if (activeElementId === '' || activeElementId === undefined) {
+				if (navElement.hasClass('active')) {
+					navElement.removeClass('active');
+				}
+			} else if (navElement.attr('data-item') === activeElementId) {
+				if (navElement.hasClass('active')) {
+				} else {
+					navElement.addClass('active');
+				}
+			} else {
+				if (navElement.hasClass('active')) {
+					navElement.removeClass('active');
+				}
+			}
+		})
 	}));
-
-
 
 });
 
@@ -114,6 +140,7 @@ function controlSwimmingTopMenu (){
 }
 
 */
+/*
 
 //кнопки активные в зависимости от раздела
 let lastClientHeight = 0;
@@ -172,6 +199,7 @@ function setActiveButton () {
 		}
 	}
 }
+*/
 
 
 //сворачивание меню на мобилках при клике
