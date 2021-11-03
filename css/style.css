@@ -955,7 +955,7 @@ ol.counter li:before {
 	position: absolute;
 	top: 0;
 	left: 0;
-	z-index: 10;
+	z-index: 15;
 	width: 100%;
 }
 @media (max-width: 767.98px) {
