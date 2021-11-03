@@ -86,6 +86,17 @@ $(document).ready(function(){
 			}
 		})
 	}
+
+	// JQ - убирание меню при клике на мобильных
+	$('.header-menu').click(function () {
+		if ($('.header-menu').hasClass('active')) {
+			$('a.header-menu__link').click(function () {
+				$('body').removeClass('lock');
+				$('.header-menu').removeClass('active');
+				$('.icon-menu').removeClass('active');
+			})
+		}
+	})
 });
 
 
@@ -204,6 +215,7 @@ function setActiveButton () {
 }
 */
 
+/*
 
 //сворачивание меню на мобилках при клике
 let lastStatusMenu = document.querySelector('.header__menu').classList.contains('active');
@@ -233,6 +245,7 @@ function checkActiveHeaderMenu() {
 		document.querySelector('.header-menu__icon').classList.remove('active');
 	}
 }
+*/
 
 //FORMS
 function forms(){
