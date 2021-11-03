@@ -1,8 +1,4 @@
-
-//@prepros-append forms.js
 //@prepros-append script.js
-
-
 
 $(document).ready(function(){
 	// слайдер
