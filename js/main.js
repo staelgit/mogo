@@ -16,15 +16,93 @@ $(document).ready(function(){
 	// найсскролл
 	$(".accordion-wedo__text").niceScroll({
 	});
-	//// JQ - переход по клику кнопки до его блока
-	//console.log($('.header-menu__list a[data-item]'));
 
+	// JQ - переход по клику кнопки до его блока
+	$('a[data-item]').click(function (e) {
+		e.preventDefault();
+		let targetSelector = '.' + $(this).attr('data-item');
+		$('html, body').animate({
+			scrollTop: $(targetSelector).offset().top-56
+		}, 1000);
+	});
 
+	// JQ - плавающее меню
+	$(window).scroll(swimmingMenu);
+
+	swimmingMenu();
+
+	function swimmingMenu () {
+		let headerElement = $('.header');
+		if ($(this).scrollTop() > 20) {
+			if (!headerElement.hasClass('fixed')) {
+				headerElement.addClass('fixed')
+			}
+		} else if (headerElement.hasClass('fixed')) {
+			headerElement.removeClass('fixed')
+		}
+	}
+
+	// JQ - подсветка кнопок в зависимости от того что сейчас на экране
+	$(window).on("scroll resize", highlightButtonByCurrentVisibleElement);
+
+	highlightButtonByCurrentVisibleElement();
+
+	function highlightButtonByCurrentVisibleElement() {
+		let currentClientHeight = $(this).height();
+		let documentScroll = $(this).scrollTop();
+		var activeElementId;
+
+		$('.wrapper').children().each(function () {
+			let elemTop = $(this).offset().top - documentScroll;
+			let elemHeight = $(this).outerHeight();
+			let visibleElemPart;
+
+			if (elemTop < currentClientHeight & (elemTop + elemHeight) > 0) {
+				if (elemTop < 0) {
+					visibleElemPart = (elemTop + elemHeight) / currentClientHeight;
+				} else {
+					visibleElemPart = (currentClientHeight - elemTop) / currentClientHeight;
+				}
+				if (visibleElemPart > 0.60) {
+					activeElementId = $(this).attr('id');
+				}
+			}
+		});
+
+		$('a[data-item]').each(function () {
+			if (!activeElementId) {
+				if ($(this).hasClass('active')) {
+					$(this).removeClass('active');
+				}
+			} else if ($(this).attr('data-item') === activeElementId) {
+				if ($(this).hasClass('active')) {
+				} else {
+					$(this).addClass('active');
+				}
+			} else {
+				if ($(this).hasClass('active')) {
+					$(this).removeClass('active');
+				}
+			}
+		})
+	}
+
+	// JQ - убирание меню при клике на мобильных
+	$('.header-menu').click(function () {
+		if ($('.header-menu').hasClass('active')) {
+			$('a.header-menu__link').click(function () {
+				$('body').removeClass('lock');
+				$('.header-menu').removeClass('active');
+				$('.icon-menu').removeClass('active');
+			})
+		}
+	})
 });
 
 
 
 
+/*
 
 // переход по клику кнопки до его блока
 goToElementByButtonClick();
@@ -51,28 +129,32 @@ function goToElementByButtonClick(){
 	}
 }
 
+*/
+/*
 
 // плавающее меню
 let lastScroll = window.pageYOffset;
 setInterval(controlSwimmingTopMenu, 100);
 
 function controlSwimmingTopMenu (){
-let currentScroll = window.pageYOffset;
-if (currentScroll !== lastScroll) {
-	lastScroll = currentScroll;
-	const elementHeader = document.querySelector(`.header`);
-	if (currentScroll > 20) {
-		if (elementHeader.classList.contains('fixed')) {}
-			else {elementHeader.classList.add('fixed')}
-	}
-	else {
-		if (elementHeader.classList.contains('fixed')) {
-			elementHeader.classList.remove('fixed')
+	let currentScroll = window.pageYOffset;
+	if (currentScroll !== lastScroll) {
+		lastScroll = currentScroll;
+		const elementHeader = document.querySelector(`.header`);
+		if (currentScroll > 20) {
+			if (elementHeader.classList.contains('fixed')) {}
+				else {elementHeader.classList.add('fixed')}
+		}
+		else {
+			if (elementHeader.classList.contains('fixed')) {
+				elementHeader.classList.remove('fixed')
+			}
 		}
 	}
 }
-};
 
+*/
+/*
 
 //кнопки активные в зависимости от раздела
 let lastClientHeight = 0;
@@ -131,7 +213,9 @@ function setActiveButton () {
 		}
 	}
 }
+*/
 
+/*
 
 //сворачивание меню на мобилках при клике
 let lastStatusMenu = document.querySelector('.header__menu').classList.contains('active');
@@ -161,6 +245,7 @@ function checkActiveHeaderMenu() {
 		document.querySelector('.header-menu__icon').classList.remove('active');
 	}
 }
+*/
 
 //FORMS
 function forms(){
