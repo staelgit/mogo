@@ -29,7 +29,11 @@ $(document).ready(function(){
 	});
 
 	// JQ - плавающее меню
-	$(window).scroll(function () {
+	$(window).scroll(swimmingMenu);
+
+	swimmingMenu();
+
+	function swimmingMenu () {
 		let headerElement = $('.header');
 		if ($(this).scrollTop() > 20) {
 			if (!headerElement.hasClass('fixed')) {
@@ -38,10 +42,14 @@ $(document).ready(function(){
 		} else if (headerElement.hasClass('fixed')) {
 			headerElement.removeClass('fixed')
 		}
-	});
+	}
 
 	// JQ - подсветка кнопок в зависимости от того что сейчас на экране
-	$(window).on("scroll resize", (function () {
+	$(window).on("scroll resize", highlightButtonByCurrentVisibleElement);
+
+	highlightButtonByCurrentVisibleElement();
+
+	function highlightButtonByCurrentVisibleElement() {
 		let currentClientHeight = $(this).height();
 		let documentScroll = $(this).scrollTop();
 		var activeElementId;
@@ -79,8 +87,7 @@ $(document).ready(function(){
 				}
 			}
 		})
-	}));
-
+	}
 });
 
 
