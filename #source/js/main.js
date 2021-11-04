@@ -182,13 +182,14 @@ function checkChangeScrollOrClientHeight () {
 function setActiveButton () {
 	const allElements = document.querySelector('.wrapper').children;
 	let currentClientHeight = document.documentElement.clientHeight;
+	let activeElementId;
 
 	for (let elem of allElements) {
 		let elemTop = elem.getBoundingClientRect().top;
 		let elemHeight = elem.getBoundingClientRect().height;
 		let visibleElemPart;
-		var activeElementId;
-		if (elemTop < currentClientHeight & (elemTop + elemHeight) > 0) {
+
+		if (elemTop < currentClientHeight && (elemTop + elemHeight) > 0) {
 			if (elemTop < 0) {
 				visibleElemPart = (elemTop + elemHeight) / currentClientHeight;
 			} else {
