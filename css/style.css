@@ -3385,9 +3385,9 @@ textarea.input {
 	cursor: pointer;
 }
 .footer__instagram-photo:hover a {
-	-webkit-transform: scale(110%);
-	    -ms-transform: scale(110%);
-	        transform: scale(110%);
+	-webkit-transform: scale(1.1, 1.1);
+	    -ms-transform: scale(1.1, 1.1);
+	        transform: scale(1.1, 1.1);
 }
 .footer__instagram-veiw-more {
 	font-size: 13px;
