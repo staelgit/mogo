@@ -14,6 +14,7 @@ $(document).ready(function(){
 	// найсскролл
 	$(".accordion-wedo__text").niceScroll({
 	});
+/*
 
 	// JQ - переход по клику кнопки до его блока
 	$('a[data-item]').click(function (e) {
@@ -23,6 +24,8 @@ $(document).ready(function(){
 			scrollTop: $(targetSelector).offset().top-56
 		}, 1000);
 	});
+*/
+/*
 
 	// JQ - плавающее меню
 	$(window).scroll(swimmingMenu);
@@ -39,6 +42,8 @@ $(document).ready(function(){
 			headerElement.removeClass('fixed')
 		}
 	}
+*/
+/*
 
 	// JQ - подсветка кнопок в зависимости от того что сейчас на экране
 	$(window).on("scroll resize", highlightButtonByCurrentVisibleElement);
@@ -84,6 +89,8 @@ $(document).ready(function(){
 			}
 		})
 	}
+*/
+/*
 
 	// JQ - убирание меню при клике на мобильных
 	$('.header-menu').click(function () {
@@ -95,14 +102,18 @@ $(document).ready(function(){
 			})
 		}
 	})
+
+*/
+
 });
 
 
 
 
-/*
+// ------------- js -------------------
 
-// переход по клику кнопки до его блока
+// JS переход по клику кнопки до его блока
+
 goToElementByButtonClick();
 
 function goToElementByButtonClick(){
@@ -127,10 +138,8 @@ function goToElementByButtonClick(){
 	}
 }
 
-*/
-/*
 
-// плавающее меню
+// JS плавающее меню
 let lastScroll = window.pageYOffset;
 setInterval(controlSwimmingTopMenu, 100);
 
@@ -151,10 +160,8 @@ function controlSwimmingTopMenu (){
 	}
 }
 
-*/
-/*
 
-//кнопки активные в зависимости от раздела
+// JS кнопки активные в зависимости от раздела
 let lastClientHeight = 0;
 let lastScroll2 = 0; 
 let timeout = 100;
@@ -211,11 +218,10 @@ function setActiveButton () {
 		}
 	}
 }
-*/
 
-/*
 
-//сворачивание меню на мобилках при клике
+
+// JS сворачивание меню на мобилках при клике
 let lastStatusMenu = document.querySelector('.header__menu').classList.contains('active');
 
 setInterval(checkActiveHeaderMenu, 100);
@@ -243,4 +249,4 @@ function checkActiveHeaderMenu() {
 		document.querySelector('.header-menu__icon').classList.remove('active');
 	}
 }
-*/
+
